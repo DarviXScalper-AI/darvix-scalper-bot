@@ -1,16 +1,20 @@
 import os
-import asyncio
 from telegram import Update
 from telegram.ext import Application, ContextTypes, MessageHandler, filters
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 
-async def handle_channel_post(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def handle_channel_post(
+    update: Update,
+    context: ContextTypes.DEFAULT_TYPE
+):
     message = update.channel_post
 
     if not message:
         return
+
+    text = message.text or message.caption or ""
 
     print("=" * 50)
     print("NEW CHANNEL POST RECEIVED")
@@ -18,7 +22,7 @@ async def handle_channel_post(update: Update, context: ContextTypes.DEFAULT_TYPE
     print(f"Channel: {message.chat.title}")
     print(f"Chat ID: {message.chat.id}")
     print(f"Message ID: {message.message_id}")
-    print(f"Text:\n{message.text or message.caption}")
+    print(f"Text:\n{text}")
     print("=" * 50)
 
 
