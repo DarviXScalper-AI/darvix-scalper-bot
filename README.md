@@ -1,1 +1,0 @@
-# darvix-scalper-bot
